@@ -35,9 +35,9 @@ bool User::setName(string n)
 	for (int i = 0; i < n.length(); i++) 
 	{
 		char c = n[i];
-		if (std::isdigit(c) || (!isalpha(c) && c != ' ')) 
+		if (isdigit(c) || (!isalpha(c) && c != ' ')) 
 		{
-			std::cout << "Ten khong the chua so hay ky tu dac biet.\n";
+			cout << "Ten khong the chua so hay ky tu dac biet.\n";
 			return false;
 		}
 	}

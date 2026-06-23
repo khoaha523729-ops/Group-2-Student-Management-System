@@ -10,7 +10,7 @@ protected:
 	string name;
 	string role;
 public:
-	User(std::string uId, std::string uName, std::string uRole);
+	User(string uId, string uName, string uRole);
 	virtual ~User() {}
 
 	string getID() const;
