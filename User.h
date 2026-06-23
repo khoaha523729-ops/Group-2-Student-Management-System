@@ -17,7 +17,7 @@ public:
 	string getName() const;
 	string getRole() const;
 
-	void setName(string n);
+	bool setName(string n);
 
 	virtual void displayMenu() = 0;
 };
