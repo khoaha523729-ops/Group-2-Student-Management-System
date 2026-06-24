@@ -4,8 +4,8 @@
 
 using namespace std;
 
-User::User(string uId, string uPass, string uName, string uRole, string uGender, string uBirthday)
-    : id(uId), pass(uPass), name(uName), role(uRole), gender(uGender), birthday(uBirthday)
+User::User(string uId, string uPass, string uName, string uGender, string uBirthday)
+    : id(uId), pass(uPass), name(uName), gender(uGender), birthday(uBirthday)
 {
 }
 
@@ -17,11 +17,6 @@ string User::getID() const
 string User::getName() const
 {
     return name;
-}
-
-string User::getRole() const
-{
-    return role;
 }
 
 string User::getBirthday() const
