@@ -6,6 +6,7 @@
 #include "Teacher.h"
 #include "Course.h"
 #include "GradeRecord.h"
+#include "Database.h"
 using namespace std;
 
 
@@ -15,24 +16,7 @@ class Login
 
 
     public:
-    void run();
+    void run(Database& db);
     void checkLogin(string id, string name);
-
-
-    // Lưu dữ liệu vào project
-    // vector<Admin> adminList;
-    vector<Student> studentList;
-    // vector<Teacher> teacherList;
-    // vector<Course> courseList;
-    // vector<GradeRecord> gradeList;
-
-    // Đọc từng file 
-    // void importAdmins();
-    // void importCourses();
-    void importStudents();
-    // void importTeachers();
-    // void importGrades();
-    void importAllData();
-    Login(); // Constructor gọi importAllData()
 };
 
