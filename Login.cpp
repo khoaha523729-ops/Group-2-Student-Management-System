@@ -27,13 +27,13 @@ void Login::run(Database& db) {
         }
 
         // 3. Kiểm tra Admin
-        for (auto& admin : db.adminList) {
-            if (admin.getID() == inputId && admin.checkPassword(inputPass)) {
-                cout << "\n[HỆ THỐNG]: Xin chào Quản trị viên " << admin.getName() << ".\n";
-                admin.display(); // Chuyển hướng sang menu admin
-                return;
-            }
-        }
+        // for (auto& admin : db.adminList) {
+        //     if (admin.getID() == inputId && admin.checkPassword(inputPass)) {
+        //         cout << "\n[HỆ THỐNG]: Xin chào Quản trị viên " << admin.getName() << ".\n";
+        //         admin.display(); // Chuyển hướng sang menu admin
+        //         return;
+        //     }
+        // }
 
         cout << "[THẤT BẠI]: Sai mã số hoặc mật khẩu!\n";
     }

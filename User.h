@@ -24,5 +24,5 @@ public:
 
     bool checkPassword(const string& inputPass) const;
 
-    virtual void displayMenu() = 0;
+    virtual void display() = 0;
 };
