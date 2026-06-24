@@ -6,41 +6,41 @@ Student::Student(string uId, string name, string m) : User(uId, name, "Student")
 
 }
 
-bool Student::enrollCourse(Course* c)
-{
-    for (int i = 0; i < enrolledCourses.size(); i++)
-    {
-        if (enrolledCourses[i] == c)
-            return false;
-    }
-    enrolledCourses.push_back(c);
-    return true;
-}
+// bool Student::enrollCourse(Course* c)
+// {
+//     for (int i = 0; i < enrolledCourses.size(); i++)
+//     {
+//         if (enrolledCourses[i] == c)
+//             return false;
+//     }
+//     enrolledCourses.push_back(c);
+//     return true;
+// }
 
-bool Student::leaveCourse(Course* c)
-{
-    for (auto it = enrolledCourses.begin();
-        it != enrolledCourses.end();
-        ++it)
-    {
-        if (*it == c)
-        {
-            enrolledCourses.erase(it);
-            return true;
-        }
-    }
-    return false;
-}
+// bool Student::leaveCourse(Course* c)
+// {
+//     for (auto it = enrolledCourses.begin();
+//         it != enrolledCourses.end();
+//         ++it)
+//     {
+//         if (*it == c)
+//         {
+//             enrolledCourses.erase(it);
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
-void Student::showCourse() const
-{
-    cout << "\nDanh sach mon da dang ky:\n";
+// void Student::showCourse() const
+// {
+//     cout << "\nDanh sach mon da dang ky:\n";
 
-    for (const auto& c : enrolledCourses)
-    {
-        cout << "- " << c << endl;
-    }
-}
+//     for (const auto& c : enrolledCourses)
+//     {
+//         cout << "- " << c << endl;
+//     }
+// }
 
 void Student::showGrade() const
 {
@@ -52,7 +52,7 @@ string Student::getMajor() const
     return major;
 }
 
-void Student::displayMenu()
+void Student::display()
 {
     cout << "\n===== STUDENT MENU =====\n";
     cout << "1. Dang ky mon hoc\n";

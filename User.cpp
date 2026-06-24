@@ -19,6 +19,11 @@ string User::getName() const
 	return name;
 }
 
+bool User::checkPassword(const string& inputPass) const 
+{
+    return pass == inputPass;
+}
+
 string User::getRole() const
 {
 	return role;

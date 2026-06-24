@@ -17,6 +17,5 @@ class Login
 
     public:
     void run(Database& db);
-    void checkLogin(string id, string name);
 };
 
