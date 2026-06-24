@@ -9,7 +9,7 @@ Database::Database() {
 
 void Database::importAllData() {
     importAdmins();
-    // importCourses();
+    importCourses();
     importStudents();
     importTeachers();
     importGrades();
@@ -28,17 +28,17 @@ void Database::importAdmins() {
     }
 }
 
-// void Database::importCourses() {
-//     ifstream f("data/course.txt");
-//     string id, name;
-//     if (f.is_open()) {
-//         while (f >> id >> name) {
-//             for (char &c : name) {if (c == '_') {c = ' ';}}
-//             courseList.push_back(Course(id, name));
-//         }
-//         f.close();
-//     }
-// }
+void Database::importCourses() {
+    ifstream f("data/course.txt");
+    string id, name;
+    if (f.is_open()) {
+        while (f >> id >> name) {
+            for (char &c : name) {if (c == '_') {c = ' ';}}
+            courseList.push_back(Course(id, name));
+        }
+        f.close();
+    }
+}
 
 void Database::importStudents() {
     ifstream f("data/student.txt");

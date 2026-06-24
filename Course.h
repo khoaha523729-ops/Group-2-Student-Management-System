@@ -1,14 +1,15 @@
 #pragma once
 #include <string>
+using namespace std;
 
 class Course
 {
 private:
-	std::string courseID;
-	std::string courseName;
+	string courseID;
+	string courseName;
 public:
-	Course(std::string id, std::string name);
+	Course(string id, string name);
 
-	std::string getCourseID() const;
-	std::string getCourseName() const;
+	string getCourseID() const;
+	string getCourseName() const;
 };
