@@ -1,17 +1,17 @@
 #include "Student.h"
 #include <iostream>
 
-Student::Student(string id, string pass, string name, string gender, string birthday, string major)
-    : User(id, pass, name, gender, birthday), major(major)
+Student::Student(string id, string pass, string name, string gender, string birthday, string field)
+    : User(id, pass, name, gender, birthday), fieldOfStudy(field)
 {
 }
 
-string Student::getMajor() const
+string Student::getFieldOfStudy() const
 {
-    return major;
+    return fieldOfStudy;
 }
 
-void Student::displayMenu()
+void Student::display()
 {
     cout << "\n===== STUDENT MENU =====\n";
     cout << "1. Hien thi cac khoa hoc\n";
