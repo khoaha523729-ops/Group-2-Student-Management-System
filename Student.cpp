@@ -6,41 +6,41 @@ Student::Student(string uId, string name, string m) : User(uId, name, "Student")
 
 }
 
-// bool Student::enrollCourse(Course* c)
-// {
-//     for (int i = 0; i < enrolledCourses.size(); i++)
-//     {
-//         if (enrolledCourses[i] == c)
-//             return false;
-//     }
-//     enrolledCourses.push_back(c);
-//     return true;
-// }
+bool Student::enrollCourse(Course* c)
+{
+    for (int i = 0; i < enrolledCourses.size(); i++)
+    {
+        if (enrolledCourses[i] == c)
+            return false;
+    }
+    enrolledCourses.push_back(c);
+    return true;
+}
 
-// bool Student::leaveCourse(Course* c)
-// {
-//     for (auto it = enrolledCourses.begin();
-//         it != enrolledCourses.end();
-//         ++it)
-//     {
-//         if (*it == c)
-//         {
-//             enrolledCourses.erase(it);
-//             return true;
-//         }
-//     }
-//     return false;
-// }
+bool Student::leaveCourse(Course* c)
+{
+    for (auto it = enrolledCourses.begin();
+        it != enrolledCourses.end();
+        ++it)
+    {
+        if (*it == c)
+        {
+            enrolledCourses.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
 
-// void Student::showCourse() const
-// {
-//     cout << "\nDanh sach mon da dang ky:\n";
+void Student::showCourse() const
+{
+    cout << "\nDanh sach mon da dang ky:\n";
 
-//     for (const auto& c : enrolledCourses)
-//     {
-//         cout << "- " << c << endl;
-//     }
-// }
+    for (const auto& c : enrolledCourses)
+    {
+        cout << "- " << c << endl;
+    }
+}
 
 void Student::showGrade() const
 {
@@ -55,9 +55,11 @@ string Student::getMajor() const
 void Student::display()
 {
     cout << "\n===== STUDENT MENU =====\n";
-    cout << "1. Dang ky mon hoc\n";
-    cout << "2. Huy mon hoc\n";
-    cout << "3. Xem mon da dang ky\n";
-    cout << "4. Xem diem\n";
-    cout << "5. Thoat\n";
+    cout << "1. Thông tin cá nhân.\n";
+    cout << "0. Thoát.\n";
+    cout << "Nhập mã học phần để xem đểm: ";
+
+    // chua co ham cin 
 }
+
+
