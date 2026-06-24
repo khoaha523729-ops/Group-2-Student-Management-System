@@ -6,31 +6,25 @@ using namespace std;
 class User
 {
 protected:
-	string id;
-	string name;
-	string pass;
-	string birthday;
-	string gender;
-
-	string role;
+    string id;
+    string pass;
+    string name;
+    string role;
+    string birthday;
+    string gender;
 
 public:
-	User(string uId, string uName, string uRole);
-	virtual ~User() {}
+    User(string uId, string uPass, string uName, string uRole,  string uGender, string uBirthday);
 
-	string getID() const;
-	string getName() const;
-	string getRole() const;
+    virtual ~User() = default;
 
-	bool setName(string n);
+    string getID() const;
+    string getName() const;
+    string getRole() const;
+    string getBirthday() const;
+    string getGender() const;
 
-	virtual void display() = 0;
+    bool checkPassword(const string& inputPass) const;
 
-
-	// : check input login
-	User(string uId, string uPass, string uName, string uGender, string uBirthday)
-        : id(uId), pass(uPass), name(uName), gender(uGender), birthday(uBirthday) {};
-
-	bool checkPassword(const string& inputPass) const;
-
+    virtual void displayMenu() = 0;
 };
