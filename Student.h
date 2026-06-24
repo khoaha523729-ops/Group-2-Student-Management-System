@@ -4,12 +4,14 @@
 
 using namespace std;
 
+class Database;
+
 class Student : public User
 {
 private:
     string major;
 public:
-    Student(string id, string pass, string name, string gender, string birthday, string major);
+    Student(string id, string pass, string name, string gender, string birthday, string major, Database& db);
     string getMajor() const;
 
     void display() override;
