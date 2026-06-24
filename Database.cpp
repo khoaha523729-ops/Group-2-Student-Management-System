@@ -42,11 +42,11 @@ void Database::importCourses() {
 
 void Database::importStudents() {
     ifstream f("data/student.txt");
-    string id, pass, name, gender, birthday, field;
+    string id, pass, name, gender, birthday, major;
     if (f.is_open()) {
-        while (f >> id >> pass >> name >> gender >> birthday >> field) {
+        while (f >> id >> pass >> name >> gender >> birthday >> major) {
             for (char &c : name) {if (c == '_') {c = ' ';}}
-            studentList.push_back(Student(id, pass, name, gender, birthday, field));
+            studentList.push_back(Student(id, pass, name, gender, birthday, major));
         }
         f.close();
     }
@@ -54,9 +54,9 @@ void Database::importStudents() {
 
 void Database::importTeachers() {
     ifstream f("data/teacher.txt");
-    string id, pass, name, birthday, classIdsList;
+    string id, pass, name, gender, birthday, classIdsList;
     if (f.is_open()) {
-        while (f >> id >> pass >> name >> birthday >> classIdsList) {
+        while (f >> id >> pass >> name >> gender >> birthday >> classIdsList) {
             for (char &c : name) {if (c == '_') {c = ' ';}}
             Teacher t(id, pass, name, birthday);
             stringstream ss(classIdsList);
@@ -65,6 +65,7 @@ void Database::importTeachers() {
                 t.addClassId(singleClassId);
             }
             teacherList.push_back(t);
+            
         }
         f.close();
     }

@@ -1,14 +1,14 @@
 #include "Student.h"
 #include <iostream>
 
-Student::Student(string id, string pass, string name, string gender, string birthday, string field)
-    : User(id, pass, name, gender, birthday), fieldOfStudy(field)
+Student::Student(string id, string pass, string name, string gender, string birthday, string major)
+    : User(id, pass, name, gender, birthday), major(major)
 {
 }
 
-string Student::getFieldOfStudy() const
+string Student::getMajor() const
 {
-    return fieldOfStudy;
+    return major;
 }
 
 void Student::display()
