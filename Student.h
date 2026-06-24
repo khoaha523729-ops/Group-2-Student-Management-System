@@ -12,6 +12,7 @@ class Student : public User
 private:
 	string major;
 	vector<Course*> enrolledCourses;
+	string field;
 public:
 	Student(string uId, string name, string major);
 	bool enrollCourse(Course* c);
@@ -21,4 +22,10 @@ public:
 	string getMajor() const;
 
 	void displayMenu() override;
+
+
+	// khoa: check login
+	Student(std::string sId, std::string sPass, std::string sName, 
+            std::string sGender, std::string sBirthday, std::string sField)
+        : User(sId, sPass, sName, sGender, sBirthday), field(sField){}
 };
