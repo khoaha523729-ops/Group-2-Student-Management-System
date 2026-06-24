@@ -9,7 +9,7 @@ class Student : public User
 private:
     string fieldOfStudy;
 public:
-    Student(string id, string pass, string name, string gender, string birthday, string fieldOfStudy);
+    Student(string id, string pass, string name, string gender, string birthday, string field);
     string getFieldOfStudy() const;
 
     void display() override;
