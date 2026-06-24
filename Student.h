@@ -7,11 +7,10 @@ using namespace std;
 class Student : public User
 {
 private:
-    string major;
-
+    string fieldOfStudy;
 public:
-    Student(string id, string pass, string name, string gender, string birthday, string major);
-    string getMajor() const;
+    Student(string id, string pass, string name, string gender, string birthday, string fieldOfStudy);
+    string getFieldOfStudy() const;
 
-    void displayMenu() override;
+    void display() override;
 };
