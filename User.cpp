@@ -4,69 +4,37 @@
 
 using namespace std;
 
-User::User(string uId, string uName, string uRole) : id(uId), name(uName), role(uRole)
+User::User(string uId, string uPass, string uName, string uRole, string uGender, string uBirthday)
+    : id(uId), pass(uPass), name(uName), role(uRole), gender(uGender), birthday(uBirthday)
 {
-	
 }
 
 string User::getID() const
 {
-	return id;
+    return id;
 }
 
 string User::getName() const
 {
-	return name;
-}
-
-bool User::checkPassword(const string& inputPass) const 
-{
-    return pass == inputPass;
+    return name;
 }
 
 string User::getRole() const
 {
-	return role;
+    return role;
 }
 
-bool User::setName(string n)
+string User::getBirthday() const
 {
-	if (n.empty())
-	{
-		cout << "Ten khong the de trong.\n";
-		return false;
-	}
+    return birthday;
+}
 
-	for (int i = 0; i < n.length(); i++) 
-	{
-		char c = n[i];
-		if (isdigit(c) || (!isalpha(c) && c != ' ')) 
-		{
-			cout << "Ten khong the chua so hay ky tu dac biet.\n";
-			return false;
-		}
-	}
+string User::getGender() const
+{
+    return gender;
+}
 
-	bool hoa = true;
-	for (int i = 0; i < n.length(); i++)
-	{
-		if (n[i] == ' ')
-		{
-			hoa = true;
-		}
-		else
-		{
-			if (hoa)
-			{
-				n[i] = toupper(n[i]);
-				hoa = false;
-			}
-			else
-			{
-				n[i] = tolower(n[i]);
-			}
-		}
-	}
-	name = n;
-	return true;
+bool User::checkPassword(const string& inputPass) const
+{
+    return pass == inputPass;
 }
