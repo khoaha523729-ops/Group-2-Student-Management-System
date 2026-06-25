@@ -13,6 +13,7 @@ private:
 public:
     Student(string id, string pass, string name, string gender, string birthday, string major, Database& db);
     string getMajor() const;
+    void showStudentRecord() const;
 
     void display() override;
 };
