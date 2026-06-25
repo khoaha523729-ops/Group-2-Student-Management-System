@@ -1,22 +1,32 @@
-#pragma once
-#include <vector>
+#ifndef TEACHER_H
+#define TEACHER_H
+
+#include <iostream>
 #include <string>
-#include "User.h"
+#include <vector>
 
 using namespace std;
 
-class Teacher : public User
-{
+class Teacher {
 private:
-    vector<string> classIds; 
+    string username;
+    string password;
+    string teacherId;
+    string name;
+    vector<string> classIds;
 
 public:
-    void display() override;
+    Teacher();
+    Teacher(string user, string pass, string id, string teacherName);
 
-    Teacher(string tId, string tPass, string tName, string tBirthday)
-        : User(tId, tPass, tName, "", tBirthday) {}
+    string getUsername() const;
+    string getPassword() const;
+    string getTeacherId() const;
+    string getName() const;
 
     void addClassId(string classId);
-
-    vector<string> getClassIds() { return classIds; }
+    void display() const;
+    void showTeacherMenu();
 };
+
+#endif
