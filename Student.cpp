@@ -28,3 +28,13 @@ void Student::display()
     cout << "2. Hien thi diem\n";
     cout << "3. Logout\n";
 }
+
+void Student::showStudentRecord() const
+{
+    cout << "\n===== STUDENT RECORD =====\n";
+    cout << "ID: " << id << endl;
+    cout << "Name: " << name << endl;
+    cout << "Gender: " << gender << endl;
+    cout << "Birthday: " << birthday << endl;
+    cout << "Major: " << major << endl;
+}
