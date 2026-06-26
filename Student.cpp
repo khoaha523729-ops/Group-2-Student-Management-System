@@ -1,5 +1,6 @@
 #include "Student.h"
 #include <iostream>
+#include "Database.h"
 
 Student::Student(string id, string pass, string name, string gender, string birthday, string major)
     : User(id, pass, name, gender, birthday), major(major)
@@ -11,7 +12,7 @@ string Student::getMajor() const
     return major;
 }
 
-void Student::display()
+void Student::display(Database& db)
 {
     cout << "\n===== STUDENT MENU =====\n";
     cout << "1. Hien thi cac khoa hoc\n";
@@ -28,3 +29,6 @@ void Student::showStudentRecord() const
     cout << "Birthday: " << birthday << endl;
     cout << "Major: " << major << endl;
 }
+
+
+void Student::setMajor(const string& newMajor) { this->major = newMajor; }

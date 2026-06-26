@@ -13,5 +13,8 @@ public:
     string getMajor() const;
     void showStudentRecord() const;
 
-    void display() override;
+    void display(Database& db);
+    
+    //du lieu cho admmin
+    void setMajor(const string& newMajor);
 };
