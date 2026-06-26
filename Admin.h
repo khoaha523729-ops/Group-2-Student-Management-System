@@ -1,8 +1,11 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <iostream>
 
 using namespace std;
+
+class Database;
 
 class Admin
 {
@@ -12,11 +15,14 @@ private:
     string aPass;
 
 public:
+    Admin(string aId, string pass, string name) : aId(aId), aPass(pass), aName(name) {}
+    string getID() const { return aId; }
+    string getName() const { return aName; }
+    bool checkPassword(const string& inputPass) const { return aPass == inputPass; }
 
-	//import file admin.txt
-	Admin(string aId, string pass, string name){};
-    string getID() const;
-    string getName() const;
-    bool checkPassword(const string& inputPass) const;
+    void adminMenu(Database& db);
+    
+    void editCourse(Database& db);
+    void editStudent(Database& db);
+    void editTeacher(Database& db);
 };
-
