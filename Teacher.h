@@ -1,34 +1,34 @@
-#pragma once
-#include <iostream>
-#include <string>
-#include <vector>
-#include "User.h"
+// #pragma once
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// #include "User.h"
 
 
 
-using namespace std;
+// using namespace std;
 
-class Teacher : public User
-{
-private:
-    string username;
-    string password;
-    string teacherId;
-    string name;
-    vector<string> classIds;
+// class Teacher : public User
+// {
+// private:
+//     string username;
+//     string password;
+//     string teacherId;
+//     string name;
+//     vector<string> classIds;
 
-public:
-    Teacher(string tId, string tPass, string tName, string tBirthday)
-    : User(tId, tPass, tName, "", tBirthday) {}
+// public:
+//     Teacher(string tId, string tPass, string tName, string tBirthday)
+//     : User(tId, tPass, tName, "", tBirthday) {}
 
-    // Teacher();
-    // Teacher(string user, string pass, string id, string teacherName);
+//     // Teacher();
+//     // Teacher(string user, string pass, string id, string teacherName);
 
-    string getUsername() const;
-    string getPassword() const;
-    string getTeacherId() const;
-    string getName() const;
+//     string getUsername() const;
+//     string getPassword() const;
+//     string getTeacherId() const;
+//     string getName() const;
 
-    void addClassId(string classId);
-    void display(Database& db);
-};
+//     void addClassId(string classId);
+//     void display(Database& db);
+// };

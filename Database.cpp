@@ -8,25 +8,25 @@ Database::Database() {
 }
 
 void Database::importAllData() {
-    importAdmins();
+    // importAdmins();
     importCourses();
     importStudents();
-    importTeachers();
+    // importTeachers();
     importGrades();
     
 }
 
-void Database::importAdmins() {
-    ifstream f("data/admin.txt");
-    string id, pass, name;
-    if (f.is_open()) {
-        while (f >> id >> pass >> name) {
-            for (char &c : name) {if (c == '_') {c = ' ';}}
-            adminList.push_back(Admin(id, pass, name));
-        }
-        f.close();
-    }
-}
+// void Database::importAdmins() {
+//     ifstream f("data/admin.txt");
+//     string id, pass, name;
+//     if (f.is_open()) {
+//         while (f >> id >> pass >> name) {
+//             for (char &c : name) {if (c == '_') {c = ' ';}}
+//             adminList.push_back(Admin(id, pass, name));
+//         }
+//         f.close();
+//     }
+// }
 
 void Database::importCourses() {
     ifstream f("data/course.txt");
@@ -52,24 +52,24 @@ void Database::importStudents() {
     }
 }
 
-void Database::importTeachers() {
-    ifstream f("data/teacher.txt");
-    string id, pass, name, gender, birthday, classIdsList;
-    if (f.is_open()) {
-        while (f >> id >> pass >> name >> gender >> birthday >> classIdsList) {
-            for (char &c : name) {if (c == '_') {c = ' ';}}
-            Teacher t(id, pass, name, birthday);
-            stringstream ss(classIdsList);
-            string singleClassId;
-            while (getline(ss, singleClassId, ',')) {
-                t.addClassId(singleClassId);
-            }
-            teacherList.push_back(t);
+// void Database::importTeachers() {
+//     ifstream f("data/teacher.txt");
+//     string id, pass, name, gender, birthday, classIdsList;
+//     if (f.is_open()) {
+//         while (f >> id >> pass >> name >> gender >> birthday >> classIdsList) {
+//             for (char &c : name) {if (c == '_') {c = ' ';}}
+//             Teacher t(id, pass, name, birthday);
+//             stringstream ss(classIdsList);
+//             string singleClassId;
+//             while (getline(ss, singleClassId, ',')) {
+//                 t.addClassId(singleClassId);
+//             }
+//             teacherList.push_back(t);
             
-        }
-        f.close();
-    }
-}
+//         }
+//         f.close();
+//     }
+// }
 
 void Database::importGrades() {
     ifstream f("data/grade.txt");

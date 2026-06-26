@@ -11,8 +11,8 @@ protected:
     string id;
     string pass;
     string name;
-    string birthday;
     string gender;
+    string birthday;
 
 public:
     User(string uId, string uPass, string uName, string uGender, string uBirthday);
@@ -26,7 +26,7 @@ public:
 
     bool checkPassword(const string& inputPass) const;
 
-    virtual void display(Database& db){};
+    virtual void display(Database& db) = 0;
 
     //lay du lieu cho admin
     void setName(const string& newName) ;

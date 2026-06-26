@@ -4,8 +4,8 @@
 
 using namespace std;
 
-User::User(string uId, string uPass, string uName, string uGender, string uBirthday)
-    : id(uId), pass(uPass), name(uName), gender(uGender), birthday(uBirthday)
+User::User(string _uId, string _uPass, string _uName, string _uGender, string _uBirthday)
+    : id(_uId), pass(_uPass), name(_uName), gender(_uGender), birthday(_uBirthday)
 {
 }
 
