@@ -56,7 +56,7 @@ void Student::showAllCourses(const Database& db) const
     for (const auto& grade : db.gradeList) {
         if (grade.getStudentId() == id) {
             
-            // Lấy mã lớp học phần 
+
             string classId = grade.getClassId(); 
             
             // 2. Tách 2 ký tự cuối của classId (Ví dụ: "C101" -> lấy "01")

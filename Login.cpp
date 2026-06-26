@@ -17,14 +17,14 @@ void Login::run(Database& db) {
             }
         }
 
-        // 2. Kiểm tra Giáo viên
-        // for (auto& teacher : db.teacherList) {
-        //     if (teacher.getID() == inputId && teacher.checkPassword(inputPass)) {
-        //         cout << "\n[HỆ THỐNG]: Xin chào Giáo viên " << teacher.getName() << ".\n";
-        //         teacher.display(db); // Chuyển hướng sang menu giáo viên
-        //         return;
-        //     }
-        // }
+        //2. Kiểm tra Giáo viên
+        for (auto& teacher : db.teacherList) {
+            if (teacher.getID() == inputId && teacher.checkPassword(inputPass)) {
+                cout << "\n[HỆ THỐNG]: Xin chào Giáo viên " << teacher.getName() << ".\n";
+                teacher.display(db); // Chuyển hướng sang menu giáo viên
+                return;
+            }
+        }
 
         // 3. Kiểm tra Admin
         // for (auto& admin : db.adminList) {
