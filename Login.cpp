@@ -12,7 +12,7 @@ void Login::run(Database& db) {
         for (auto& student : db.studentList) {
             if (student.getID() == inputId && student.checkPassword(inputPass)) {
                 cout << "\n[HỆ THỐNG]: Xin chào Sinh viên " << student.getName() << ".\n";
-                student.display(); // Chuyển hướng sang menu sinh viên
+                student.display(db); // Chuyển hướng sang menu sinh viên
                 return; 
             }
         }
@@ -21,7 +21,7 @@ void Login::run(Database& db) {
         for (auto& teacher : db.teacherList) {
             if (teacher.getID() == inputId && teacher.checkPassword(inputPass)) {
                 cout << "\n[HỆ THỐNG]: Xin chào Giáo viên " << teacher.getName() << ".\n";
-                teacher.display(); // Chuyển hướng sang menu giáo viên
+                teacher.display(db); // Chuyển hướng sang menu giáo viên
                 return;
             }
         }

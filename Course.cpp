@@ -13,3 +13,9 @@ std::string Course::getCourseName() const
 {
 	return courseName;
 }
+
+void Course::setName(string newName)
+{
+	this->courseName = newName; 
+}
+

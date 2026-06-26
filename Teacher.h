@@ -1,13 +1,15 @@
-#ifndef TEACHER_H
-#define TEACHER_H
-
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
+#include "User.h"
+
+
 
 using namespace std;
 
-class Teacher {
+class Teacher : public User
+{
 private:
     string username;
     string password;
@@ -16,8 +18,11 @@ private:
     vector<string> classIds;
 
 public:
-    Teacher();
-    Teacher(string user, string pass, string id, string teacherName);
+    Teacher(string tId, string tPass, string tName, string tBirthday)
+    : User(tId, tPass, tName, "", tBirthday) {}
+
+    // Teacher();
+    // Teacher(string user, string pass, string id, string teacherName);
 
     string getUsername() const;
     string getPassword() const;
@@ -25,8 +30,5 @@ public:
     string getName() const;
 
     void addClassId(string classId);
-    void display() const;
-    void showTeacherMenu();
+    void display(Database& db);
 };
-
-#endif

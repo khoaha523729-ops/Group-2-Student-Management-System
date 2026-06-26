@@ -12,9 +12,6 @@ using namespace std;
 
 class Login
 {
-    private:
-
-
     public:
     void run(Database& db);
 };

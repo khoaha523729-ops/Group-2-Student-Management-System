@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "Student.h"
+#include "Teacher.h"
+#include "Course.h"
 
 using namespace std;
 
@@ -13,16 +16,28 @@ private:
     string aId;
     string aName;
     string aPass;
+    vector<Course>* managingCourses;
+    vector<Student>* managingStudents;
+    vector<Teacher>* managingTeachers;
 
 public:
-    Admin(string aId, string pass, string name) : aId(aId), aPass(pass), aName(name) {}
-    string getID() const { return aId; }
-    string getName() const { return aName; }
-    bool checkPassword(const string& inputPass) const { return aPass == inputPass; }
+    string getID() const;
+    string getName() const;
+    bool checkPassword(const string& inputPass) const;
 
-    void adminMenu(Database& db);
+    void adminMenu(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers);
     
-    void editCourse(Database& db);
-    void editStudent(Database& db);
-    void editTeacher(Database& db);
+    void editCourse();
+    void editStudent();
+    void editTeacher();
+
+    void courseSubMenu();
+    void studentSubMenu();
+    void teacherSubMenu();
+    void addStudent();
+    void addCourse();
+    void addTeacher();
+    
+    Admin(string aId, string pass, string name);
+    // ~Admin();
 };

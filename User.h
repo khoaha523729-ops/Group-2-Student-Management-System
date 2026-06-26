@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+class Database;
+
 using namespace std;
 
 class User
@@ -24,5 +26,10 @@ public:
 
     bool checkPassword(const string& inputPass) const;
 
-    virtual void display() = 0;
+    virtual void display(Database& db){};
+
+    //lay du lieu cho admin
+    void setName(const string& newName) ;
+    void setBirthday(const string& newBirthday) ;
+    void setGender(const string& newGender);
 };

@@ -3,14 +3,14 @@
 
 using namespace std;
 
-Teacher::Teacher() : username(""), password(""), teacherId(""), name("") {}
+// Teacher::Teacher() : username(""), password(""), teacherId(""), name("") {}
 
-Teacher::Teacher(string user, string pass, string id, string teacherName) {
-    username = user;
-    password = pass;
-    teacherId = id;
-    name = teacherName;
-}
+// Teacher::Teacher(string user, string pass, string id, string teacherName) {
+//     username = user;
+//     password = pass;
+//     teacherId = id;
+//     name = teacherName;
+// }
 
 string Teacher::getUsername() const { return username; }
 string Teacher::getPassword() const { return password; }
@@ -21,11 +21,9 @@ void Teacher::addClassId(string classId) {
     this->classIds.push_back(classId);
 }
 
-void Teacher::display() const {
+void Teacher::display(Database& db)
+{
     cout << "Giao vien: " << name << " (ID: " << teacherId << ")" << endl;
-}
-
-void Teacher::showTeacherMenu() {
     string choiceClass;
     while (true) {
         cout << "\n------------------------------------" << endl;
