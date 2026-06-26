@@ -1,19 +1,9 @@
 #include "Student.h"
-#include "Database.h"
 #include <iostream>
 
-Student::Student(string id, string pass, string name, string gender, string birthday, string major, Database& db)
+Student::Student(string id, string pass, string name, string gender, string birthday, string major)
     : User(id, pass, name, gender, birthday), major(major)
 {
-    cout << "\n===== ALL COURSES =====\n";
-
-    for (int i = 0; i < db.courseList.size(); i++)
-    {
-        cout << db.courseList[i].getCourseID() << " "
-            << db.courseList[i].getCourseName() << endl;
-    }
-
-    cout << endl;
 }
 
 string Student::getMajor() const
