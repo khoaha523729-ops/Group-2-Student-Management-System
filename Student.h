@@ -4,14 +4,19 @@
 
 using namespace std;
 
+class Database;
+
 class Student : public User
 {
 private:
     string major;
 public:
     Student(string id, string pass, string name, string gender, string birthday, string major);
-    string getMajor() const;
-    void showStudentRecord() const;
 
+    string getMajor() const;
     void display() override;
+    void showAllCourses(const Database& db) const;
+    string inputCourseID() const;
+    void showCourseGrade(const Database& db, const string& courseID) const;
+    void showStudentRecord() const;
 };
