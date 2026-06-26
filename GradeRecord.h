@@ -1,21 +1,21 @@
 #pragma once
 #include <string>
 
+using namespace std;
+
 class GradeRecord
 {
 private:
-    string studentId;  
-    string classId;    
-    double processScore;   
-    double endCourseScore;  
-
+    string studentId;
+    string classId;
+    double processScore;
+    double endCourseScore;
 public:
-   
-    //import file GradeRecord.txt
-    GradeRecord(string sId, string cId, double pScore, double eScore)
-        : studentId(sId), classId(cId), processScore(pScore), endCourseScore(eScore) {}
-    
-        double getFinalScore() const {
-        return (processScore * 0.4) + (endCourseScore * 0.6);
-    }
+    GradeRecord(string sId, string cId, double pScore, double eScore);
+
+    string getStudentId() const;
+    string getClassId() const;
+    double getProcessScore() const;
+    double getEndCourseScore() const;
+    double getFinalScore() const;
 };
