@@ -17,7 +17,7 @@ private:
 public:
     Teacher(string tId, string tPass, string tName,string tgender, string tBirthday, vector<string> tclassIds);
 
-    void viewStudentsInClass(const string& targetClassId, const Database& db);
-    void addClassId(string classId);
+    void viewStudentsInClass(const string& targetClassId, Database& db);
+    void editGrade(const string& targetClassId, const string& studentId, Database& db);
     void display(Database& db);
 };

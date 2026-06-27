@@ -34,7 +34,3 @@ bool User::checkPassword(const string& inputPass) const
     return pass == inputPass;
 }
 
-
-void User::setName(const string& newName) { this->name = newName; }
-void User::setBirthday(const string& newBirthday) { this->birthday = newBirthday; }
-void User::setGender(const string& newGender) { this->gender = newGender; }

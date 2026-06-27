@@ -85,3 +85,26 @@ void Database::importGrades() {
     }
 }
 
+void Database::exportGrades()
+{
+    // Mở file ở chế độ ghi (mặc định sẽ ghi đè xóa dữ liệu cũ để cập nhật mới)
+    ofstream f("data/grade.txt"); 
+    
+    if (f.is_open()) {
+        // Duyệt qua từng bản ghi điểm trong hệ thống dựa trên vector gradeList của Database
+        for (const auto& grade : gradeList) {
+            // Ghi dữ liệu ra file theo đúng thứ tự: mssv -> mã lớp -> điểm quá trình -> điểm cuối kỳ
+            // Sử dụng các hàm Getter của class GradeRecord (lưu ý chỉnh tên hàm cho đúng với class của anh)
+            f << grade.getStudentId() << " " 
+              << grade.getClassId() << " " 
+              << grade.getProcessScore() << " " 
+              << grade.getEndCourseScore() << "\n"; 
+        }
+        
+        f.close(); // Đóng file sau khi ghi xong
+        cout << "Da luu va dong bo du lieu diem thanh cong.\n";
+    } else {
+        // Thông báo nếu hệ thống không tìm thấy thư mục hoặc file bị khóa
+        cout << "[Error] Du lieu luu khong thanh cong!\n";
+    }
+}

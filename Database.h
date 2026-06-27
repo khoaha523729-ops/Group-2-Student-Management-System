@@ -27,6 +27,10 @@ class Database
     void importTeachers();
     void importGrades();
     void importAllData();
+
+    void exportGrades();
     
     Database();
+
+    
 };
