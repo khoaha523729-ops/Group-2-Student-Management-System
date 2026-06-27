@@ -20,6 +20,7 @@ public:
 
     string getID() const;
     string getName() const;
+    string getPass() const;
     string getBirthday() const;
     string getGender() const;
 

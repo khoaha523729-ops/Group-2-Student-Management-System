@@ -31,6 +31,5 @@ class Database
     void exportGrades();
     
     Database();
-
     
 };

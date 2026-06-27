@@ -159,3 +159,13 @@ void Teacher::editGrade(const string& targetClassId, const string& studentId, Da
     cout << "===========================================\n" << endl;
 }
 
+string Teacher::getTeachingCourses() const{
+        string result = "";
+        for (size_t i = 0; i < classIds.size(); ++i) {
+            result += classIds[i];
+            if (i < classIds.size() - 1) {
+                result += ","; // Thêm dấu phẩy giữa các mã lớp
+            }
+        }
+        return result.empty() ? "None" : result; 
+    }

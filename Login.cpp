@@ -32,7 +32,7 @@ void Login::run(Database& db) {
         for (auto& admin : db.adminList) {
             if (admin.getID() == inputId && admin.checkPassword(inputPass)) {
                 cout << "\n[HỆ THỐNG]: Xin chào Quản trị viên " << admin.getName() << ".\n";
-                admin.adminMenu(db.courseList, db.studentList, db.teacherList); // Chuyển hướng sang menu admin
+                admin.adminMenu(db.courseList, db.studentList, db.teacherList, db); // Chuyển hướng sang menu admin
                 return;
             }
         }

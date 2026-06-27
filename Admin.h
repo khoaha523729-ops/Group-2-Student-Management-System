@@ -5,6 +5,8 @@
 #include "Teacher.h"
 #include "Course.h"
 
+class Database;
+
 using namespace std;
 
 class Admin
@@ -27,12 +29,12 @@ public:
     bool checkPassword(const string& inputPass) const;
 
     // Các hàm xử lý Menu hệ thống
-    void adminMenu(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers);
+    void adminMenu(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers, Database& db);
     void setData(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers);
 
-    void courseSubMenu();
-    void studentSubMenu();
-    void teacherSubMenu();
+    void courseSubMenu(Database& db);
+    void studentSubMenu(Database& db);
+    void teacherSubMenu(Database& db);
 
     // Các hàm nghiệp vụ quản lý Môn học (Course)
     void addCourse();

@@ -19,6 +19,12 @@ string User::getName() const
     return name;
 }
 
+string User::getPass() const
+{
+    return pass;
+}
+
+
 string User::getBirthday() const
 {
     return birthday;

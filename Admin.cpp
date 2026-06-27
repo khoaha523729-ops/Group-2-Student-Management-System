@@ -1,9 +1,10 @@
-#define NOMINMAX 
-#include <windows.h> 
 #include <iostream>
 #include <fstream>   
 #include <string>
+#include <algorithm>
+#include "Database.h"
 #include "Admin.h"
+#include "Course.h"
 
 using namespace std;
 
@@ -18,38 +19,57 @@ string Admin::getID() const { return aId; }
 string Admin::getName() const { return aName; }
 bool Admin::checkPassword(const string& inputPass) const { return aPass == inputPass; }
 
-void Admin::editInfo() {
-    cout << "\n[He thong] Dang tu dong luu du lieu vao thu muc data..." << endl;
+string formatSpace(string str) {
+    replace(str.begin(), str.end(), ' ', '_');
+    return str;
+}
 
+void Admin::editInfo() {
+
+    // 1. Xử lý khóa học (Course)
     if (managingCourses != nullptr) {
-        ofstream f("data/course.txt"); 
+        ofstream f("data/course.txt");
         if (f.is_open()) {
             for (size_t i = 0; i < managingCourses->size(); i++) {
-                f << managingCourses->at(i).getCourseID() << "," << managingCourses->at(i).getCourseName() << "\n"; 
+                // Format: ID [khoảng cách] Name_Thay_Doi
+                f << managingCourses->at(i).getCourseID() << " " 
+                  << formatSpace(managingCourses->at(i).getCourseName()) << "\n";
             }
             f.close();
         }
     }
 
+    // 2. Xử lý sinh viên (Student)
     if (managingStudents != nullptr) {
         ofstream f("data/student.txt");
         if (f.is_open()) {
             for (size_t i = 0; i < managingStudents->size(); i++) {
-                f << managingStudents->at(i).getID() << "," 
-                  << managingStudents->at(i).getName() << "," 
-                  << managingStudents->at(i).getBirthday() << "," 
-                  << managingStudents->at(i).getGender() << "," 
-                  << managingStudents->at(i).getMajor() << "\n";
+                // Format mới: S01 1001 Nguyen_An_Binh Male 12/03/2007 Khoa_hoc_may_tinh
+                // Hãy thay thế .getClassID() bằng hàm getter thực tế của bạn cho số 1001 này
+                f << managingStudents->at(i).getID() << " "
+                  << managingStudents->at(i).getPass() << " " 
+                  << formatSpace(managingStudents->at(i).getName()) << " "
+                  << managingStudents->at(i).getGender() << " "
+                  << managingStudents->at(i).getBirthday() << " "
+                  << formatSpace(managingStudents->at(i).getMajor()) << "\n";
             }
             f.close();
         }
     }
 
+    // 3. Xử lý giáo viên (Teacher)
     if (managingTeachers != nullptr) {
         ofstream f("data/teacher.txt");
         if (f.is_open()) {
             for (size_t i = 0; i < managingTeachers->size(); i++) {
-                f << managingTeachers->at(i).getID() << "," << managingTeachers->at(i).getName() << "\n";
+                // Format mới: T01 12345 Nguyen_Van_An Male 12/03/1980 C101,C201,C301
+                // Hãy thay thế các hàm getter cho phù hợp với cấu trúc class Teacher của bạn
+                f << managingTeachers->at(i).getID() << " "
+                  << managingTeachers->at(i).getPass() << " " 
+                  << formatSpace(managingTeachers->at(i).getName()) << " "
+                  << managingTeachers->at(i).getGender() << " "
+                  << managingTeachers->at(i).getBirthday() << " "
+                  << managingTeachers->at(i).getTeachingCourses() << "\n"; 
             }
             f.close();
         }
@@ -63,7 +83,7 @@ void Admin::setData(vector<Course>& courses, vector<Student>& students, vector<T
     this->managingTeachers = &teachers;
 }
 
-void Admin::adminMenu(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers) {
+void Admin::adminMenu(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers, Database& db) {
     setData(courses, students, teachers); 
     int choice;
     while (true) {
@@ -71,38 +91,67 @@ void Admin::adminMenu(vector<Course>& courses, vector<Student>& students, vector
         cout << "1. Quan ly mon hoc (Course)" << endl;
         cout << "2. Quan ly sinh vien (Student)" << endl;
         cout << "3. Quan ly giao vien (Teacher)" << endl;
-        cout << "0. Dang xuat" << endl;
+        cout << "0. Dang xuat va luu du lieu" << endl;
         cout << "Chon: "; cin >> choice;
 
         if (choice == 0) break;
         switch (choice) {
-            case 1: courseSubMenu(); break;
-            case 2: studentSubMenu(); break;
-            case 3: teacherSubMenu(); break;
+            case 1: courseSubMenu(db); break;
+            case 2: studentSubMenu(db); break;
+            case 3: teacherSubMenu(db); break;
             default: cout << "Lua chon sai!" << endl;
         }
     }
     editInfo();
 }
 
-void Admin::courseSubMenu() {
+void Admin::courseSubMenu(Database& db) {
     int choice;
+    cout << "\n=== DANH SÁCH MÔN HỌC HIỆN TẠI ===\n";
+    if (db.courseList.empty()) {
+        cout << "(Chưa có môn học nào trong hệ thống)\n";
+    } else {
+        for (const auto& c : db.courseList) {
+            cout << " - Mã môn: " << c.getCourseID() << " | Tên môn: " << c.getCourseName() << endl;
+        }
+    }
+    cout << "---------------------------------\n";
+
     cout << "\n[COURSE MENU]\n1. Add Course\n2. Edit Course\n0. Return\nChoice: ";
     cin >> choice;
     if (choice == 1) addCourse();
     else if (choice == 2) editCourse();
 }
 
-void Admin::studentSubMenu() {
+void Admin::studentSubMenu(Database& db) {
     int choice;
+    cout << "\n=== DANH SÁCH SINH VIÊN HIỆN TẠI ===\n";
+    if (db.studentList.empty()) {
+        cout << "(Chưa có sinh viên nào trong hệ thống)\n";
+    } else {
+        for (const auto& s : db.studentList) {
+            cout << " - MSSV: " << s.getID() << " | Họ tên: " << s.getName() << " | Ngành: " << s.getMajor() << endl;
+        }
+    }
+    cout << "-----------------------------------\n";
+    
     cout << "\n[STUDENT MENU]\n1. Add Student\n2. Edit Student\n0. Return\nChoice: ";
     cin >> choice;
     if (choice == 1) addStudent();
     else if (choice == 2) editStudent();
 }
 
-void Admin::teacherSubMenu() {
+void Admin::teacherSubMenu(Database& db) {
     int choice;
+    cout << "\n=== DANH SÁCH GIÁO VIÊN HIỆN TẠI ===\n";
+    if (db.teacherList.empty()) {
+        cout << "(Chưa có giáo viên nào trong hệ thống)\n";
+    } else {
+        for (const auto& t : db.teacherList) {
+            cout << " - Mã GV: " << t.getID() << " | Họ tên: " << t.getName() << endl;
+        }
+    }
+    cout << "-----------------------------------\n";
     cout << "\n[TEACHER MENU]\n1. Add Teacher\n2. Edit Teacher\n0. Return\nChoice: ";
     cin >> choice;
     if (choice == 1) addTeacher();
