@@ -52,30 +52,29 @@ void Student::showAllCourses(const Database& db) const
     bool found = false;
     cout << "--- Danh sach hoc phan cua sinh vien " << id << " ---" << endl;
 
-    // 1. Duyệt qua danh sách điểm để tìm các bản ghi có cùng studentId
+    // Duyệt qua danh sách điểm để tìm studentId
     for (const auto& grade : db.gradeList) {
         if (grade.getStudentId() == id) {
             
 
             string classId = grade.getClassId(); 
-            
-            // 2. Tách 2 ký tự cuối của classId (Ví dụ: "C101" -> lấy "01")
+
             // Cắt từ vị trí độ dài chuỗi trừ đi 2 ký tự
             string courseIdTarget = "";
             if (classId.length() >= 2) {
                 courseIdTarget = classId.substr(classId.length() - 2);
             }
 
-            // 3. Tìm tên học phần tương ứng trong courseList dựa trên courseIdTarget vừa cắt
+            // Tìm tên học phần tương ứng trong courseList  trên courseIdTarget vừa cắt
             string courseName = "Khong tim thay ten hoc phan";
             for (const auto& course : db.courseList) {
                 if (course.getCourseID() == courseIdTarget) {
                     courseName = course.getCourseName();
-                    break; // Tìm thấy rồi thì dừng vòng lặp courseList
+                    break; 
                 }
             }
 
-            // 4. In kết quả định dạng: Mã lớp học phần + Tên học phần
+            // In kết quả
             cout << classId << " " << courseName << endl;
             found = true;
         }

@@ -31,7 +31,6 @@ public:
     // Các hàm xử lý Menu hệ thống
     void adminMenu(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers, Database& db);
     void setData(vector<Course>& courses, vector<Student>& students, vector<Teacher>& teachers);
-
     void courseSubMenu(Database& db);
     void studentSubMenu(Database& db);
     void teacherSubMenu(Database& db);
@@ -47,6 +46,6 @@ public:
     // Các hàm nghiệp vụ quản lý Giáo viên (Teacher)
     void addTeacher();
     void editTeacher();
-    
+    // xuat
     void editInfo();
 };

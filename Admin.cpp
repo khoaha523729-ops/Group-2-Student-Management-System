@@ -25,13 +25,11 @@ string formatSpace(string str) {
 }
 
 void Admin::editInfo() {
-
-    // 1. Xử lý khóa học (Course)
+    //Xử lý khóa học (Course)
     if (managingCourses != nullptr) {
         ofstream f("data/course.txt");
         if (f.is_open()) {
             for (size_t i = 0; i < managingCourses->size(); i++) {
-                // Format: ID [khoảng cách] Name_Thay_Doi
                 f << managingCourses->at(i).getCourseID() << " " 
                   << formatSpace(managingCourses->at(i).getCourseName()) << "\n";
             }
@@ -39,13 +37,12 @@ void Admin::editInfo() {
         }
     }
 
-    // 2. Xử lý sinh viên (Student)
+//Xử lý sinh viên (Student)
     if (managingStudents != nullptr) {
         ofstream f("data/student.txt");
         if (f.is_open()) {
             for (size_t i = 0; i < managingStudents->size(); i++) {
-                // Format mới: S01 1001 Nguyen_An_Binh Male 12/03/2007 Khoa_hoc_may_tinh
-                // Hãy thay thế .getClassID() bằng hàm getter thực tế của bạn cho số 1001 này
+                // Format : S01 1001 Nguyen_An_Binh Male 12/03/2007 Khoa_hoc_may_tinh
                 f << managingStudents->at(i).getID() << " "
                   << managingStudents->at(i).getPass() << " " 
                   << formatSpace(managingStudents->at(i).getName()) << " "
@@ -57,13 +54,11 @@ void Admin::editInfo() {
         }
     }
 
-    // 3. Xử lý giáo viên (Teacher)
+    // Xử lý giáo viên (Teacher)
     if (managingTeachers != nullptr) {
         ofstream f("data/teacher.txt");
         if (f.is_open()) {
             for (size_t i = 0; i < managingTeachers->size(); i++) {
-                // Format mới: T01 12345 Nguyen_Van_An Male 12/03/1980 C101,C201,C301
-                // Hãy thay thế các hàm getter cho phù hợp với cấu trúc class Teacher của bạn
                 f << managingTeachers->at(i).getID() << " "
                   << managingTeachers->at(i).getPass() << " " 
                   << formatSpace(managingTeachers->at(i).getName()) << " "
@@ -107,15 +102,15 @@ void Admin::adminMenu(vector<Course>& courses, vector<Student>& students, vector
 
 void Admin::courseSubMenu(Database& db) {
     int choice;
-    cout << "\n=== DANH SÁCH MÔN HỌC HIỆN TẠI ===\n";
+    cout << "\n=== DANH SACH MON HOC HIEN TAI ===\n";
     if (db.courseList.empty()) {
-        cout << "(Chưa có môn học nào trong hệ thống)\n";
+        cout << "(Chua co mon hoc nao)\n";
     } else {
         for (const auto& c : db.courseList) {
-            cout << " - Mã môn: " << c.getCourseID() << " | Tên môn: " << c.getCourseName() << endl;
+            cout << " - Ma mon: " << c.getCourseID() << " | Ten mon: " << c.getCourseName() << endl;
         }
     }
-    cout << "---------------------------------\n";
+    cout << "======================================\n";
 
     cout << "\n[COURSE MENU]\n1. Add Course\n2. Edit Course\n0. Return\nChoice: ";
     cin >> choice;
@@ -125,15 +120,15 @@ void Admin::courseSubMenu(Database& db) {
 
 void Admin::studentSubMenu(Database& db) {
     int choice;
-    cout << "\n=== DANH SÁCH SINH VIÊN HIỆN TẠI ===\n";
+    cout << "\n=== DANH SACH SINH VIEN HIEN TAI ===\n";
     if (db.studentList.empty()) {
-        cout << "(Chưa có sinh viên nào trong hệ thống)\n";
+        cout << "(Chua co danh sach sinh cien)\n";
     } else {
         for (const auto& s : db.studentList) {
-            cout << " - MSSV: " << s.getID() << " | Họ tên: " << s.getName() << " | Ngành: " << s.getMajor() << endl;
+            cout << " - MSSV: " << s.getID() << " | Ho ten: " << s.getName() << " | Nganh: " << s.getMajor() << endl;
         }
     }
-    cout << "-----------------------------------\n";
+    cout << "======================================\n";
     
     cout << "\n[STUDENT MENU]\n1. Add Student\n2. Edit Student\n0. Return\nChoice: ";
     cin >> choice;
@@ -143,15 +138,15 @@ void Admin::studentSubMenu(Database& db) {
 
 void Admin::teacherSubMenu(Database& db) {
     int choice;
-    cout << "\n=== DANH SÁCH GIÁO VIÊN HIỆN TẠI ===\n";
+    cout << "\n=== DANH SACH GIAO VIEN HIEN TAI ===\n";
     if (db.teacherList.empty()) {
-        cout << "(Chưa có giáo viên nào trong hệ thống)\n";
+        cout << "(Chua co danh sach giao vien)\n";
     } else {
         for (const auto& t : db.teacherList) {
-            cout << " - Mã GV: " << t.getID() << " | Họ tên: " << t.getName() << endl;
+            cout << " - Ma giao vien: " << t.getID() << " | Ho ten: " << t.getName() << endl;
         }
     }
-    cout << "-----------------------------------\n";
+    cout << "======================================\n";
     cout << "\n[TEACHER MENU]\n1. Add Teacher\n2. Edit Teacher\n0. Return\nChoice: ";
     cin >> choice;
     if (choice == 1) addTeacher();
@@ -160,7 +155,7 @@ void Admin::teacherSubMenu(Database& db) {
 
 void Admin::addCourse() {
     string inputID, inputName;
-    cout << "\n----- THEM MON HOC MOI -----" << endl;
+    cout << "\n====== THEM MON HOC MOI ======" << endl;
     cout << "Nhap Ma mon hoc: "; cin >> inputID;
     cin.ignore(1000, '\n');
 
@@ -178,7 +173,7 @@ void Admin::addCourse() {
 
 void Admin::editCourse() {
     string id;
-    cout << "\n----- SUA THONG TIN MON HOC -----" << endl;
+    cout << "\n===== SUA THONG TIN MON HOC =====" << endl;
     cout << "Nhap Ma mon hoc can sua: "; cin >> id;
     cin.ignore(1000, '\n');
 
@@ -202,7 +197,7 @@ void Admin::addStudent() {
     string inputId, inputName, inputGender, inputBirthday, inputMajor;
     string defaultPass = "123";
     
-    cout << "\n----- THEM SINH VIEN MOI -----" << endl;
+    cout << "\n===== THEM SINH VIEN MOI =====" << endl;
     cout << "Nhap ID: "; cin >> inputId; 
     cin.ignore(1000, '\n'); 
 
@@ -225,7 +220,7 @@ void Admin::addStudent() {
 
 void Admin::editStudent() {
     string id;
-    cout << "\n----- SUA THONG TIN SINH VIEN -----" << endl;
+    cout << "\n===== SUA THONG TIN SINH VIEN =====" << endl;
     cout << "Nhap Student ID can sua: "; cin >> id;
     cin.ignore(1000, '\n');
     bool found = false;
@@ -251,7 +246,7 @@ void Admin::addTeacher() {
     vector<string> inputClassId;
     string defaultPass = "123"; 
 
-    cout << "\n----- THEM GIAO VIEN MOI -----" << endl;
+    cout << "\n===== THEM GIAO VIEN MOI =====" << endl;
     cout << "Nhap ID Giao vien: "; cin >> inputId;
     cin.ignore(1000, '\n'); 
     cout << "Nhap Ho ten: "; getline(cin, inputName);
@@ -265,7 +260,7 @@ void Admin::addTeacher() {
 
 void Admin::editTeacher() {
     string id;
-    cout << "\n----- SUA THONG TIN GIAO VIEN -----" << endl;
+    cout << "\n===== SUA THONG TIN GIAO VIEN =====" << endl;
     cout << "Nhap Teacher ID can sua: "; cin >> id;
     cin.ignore(1000, '\n'); 
 

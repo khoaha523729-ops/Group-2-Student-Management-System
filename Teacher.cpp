@@ -39,7 +39,7 @@ void Teacher::display(Database& db)
         if (choiceClass == "0") {
             return;
         } else {
-            // Chuyển tiếp sang hàm xử lý chức năng hiển thị học sinh
+            // Chuyển sang hàm xử hiển học sinh
             viewStudentsInClass(choiceClass, db);
         }
     }
@@ -53,17 +53,16 @@ void Teacher::viewStudentsInClass(const string& targetClassId, Database& db) {
     // Tạo một vector để lưu lại những MSSV thực sự học lớp này (phục vụ việc đối chiếu sau đó)
     vector<string> validStudentIds;
 
-    // 1. Duyệt qua danh sách Điểm (Grade)
     for (const auto& grade : db.gradeList) {
         if (grade.getClassId() == targetClassId) {
             string studentIdInGrade = grade.getStudentId();
             
-            // 2. Đối chiếu lấy tên sinh viên
+            //Đối chiếu lấy tên sinh viên
             for (const auto& student : db.studentList) {
                 if (student.getID() == studentIdInGrade) {
                     cout << "MSV: " << student.getID() << " | Ho ten: " << student.getName() << endl;
                     
-                    // Lưu MSSV hợp lệ này vào danh sách
+                    // Lưu MSSV
                     validStudentIds.push_back(student.getID());
                     found = true;
                     break; 
@@ -74,7 +73,7 @@ void Teacher::viewStudentsInClass(const string& targetClassId, Database& db) {
 
     if (!found) {
         cout << "Khong tim thay hoc sinh nao thuoc hoc phan nay hoặc ma lop khong ton tai." << endl;
-        return; // Nếu không có học sinh thì kết thúc luôn, không chuyển tiếp nữa
+        return; 
     }
     cout << "=========================================\n" << endl;
 
@@ -85,10 +84,10 @@ void Teacher::viewStudentsInClass(const string& targetClassId, Database& db) {
         cin >> choiceStudentId;
 
         if (choiceStudentId == "0") {
-            return; // Thoát ra ngoài, quay về danh sách lớp
+            return; 
         }
 
-        // Kiểm tra xem MSSV vừa nhập có nằm trong danh sách validStudentIds không
+        // Kiểm tra xem MSSV trong danh sách validStudentIds 
         bool isValid = false;
         for (const string& id : validStudentIds) {
             if (id == choiceStudentId) {
@@ -98,12 +97,9 @@ void Teacher::viewStudentsInClass(const string& targetClassId, Database& db) {
         }
 
         if (isValid) {
-            // Đúng MSSV hiển thị trên màn hình -> Chuyển tiếp sang hàm editGrade thực sự của anh
-            // Giả sử hàm editGrade nhận vào (Mã lớp, Mã sinh viên, Cơ sở dữ liệu)
             editGrade(targetClassId, choiceStudentId, db); 
-            return; // Sau khi sửa xong hoặc thoát ra thì kết thúc hàm chuyển tiếp này
+            return;
         } else {
-            // Sai MSSV hoặc sinh viên này không thuộc lớp đang xem
             cout << "\n[Loi] MSSV khong hop le hoac khong co ten trong danh sach lop! Vui long nhap lai.\n" << endl;
         }
     }

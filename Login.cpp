@@ -6,8 +6,8 @@ using namespace std;
 void Login::run(Database& db) {
     string inputId, inputPass;
     while (true) {
-        cout << "Id: "; cin >> inputId;
-        cout << "Password: "; cin >> inputPass; 
+        cout << "Nhap Id dang nhap: "; cin >> inputId;
+        cout << "Nhap Password: "; cin >> inputPass; 
         cin.ignore(1000, '\n');
 
         // 1. Kiểm tra Sinh viên
@@ -31,7 +31,7 @@ void Login::run(Database& db) {
         //3. Kiểm tra Admin
         for (auto& admin : db.adminList) {
             if (admin.getID() == inputId && admin.checkPassword(inputPass)) {
-                cout << "\n[HỆ THỐNG]: Xin chào Quản trị viên " << admin.getName() << ".\n";
+                cout << "\nXin chao quan tri vien " << admin.getName() << ".\n";
                 admin.adminMenu(db.courseList, db.studentList, db.teacherList, db); // Chuyển hướng sang menu admin
                 return;
             }
