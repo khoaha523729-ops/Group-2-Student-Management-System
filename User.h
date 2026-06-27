@@ -23,6 +23,10 @@ public:
     string getBirthday() const;
     string getGender() const;
 
+    void setName(string new_name);
+    void setGender(string new_gender);
+    void setBirthday(string new_birthday);
+
     bool checkPassword(const string& inputPass) const;
 
     virtual void display(Database& db) = 0;

@@ -28,14 +28,14 @@ void Login::run(Database& db) {
             }
         }
 
-        // 3. Kiểm tra Admin
-        // for (auto& admin : db.adminList) {
-        //     if (admin.getID() == inputId && admin.checkPassword(inputPass)) {
-        //         cout << "\n[HỆ THỐNG]: Xin chào Quản trị viên " << admin.getName() << ".\n";
-        //         admin.display(); // Chuyển hướng sang menu admin
-        //         return;
-        //     }
-        // }
+        //3. Kiểm tra Admin
+        for (auto& admin : db.adminList) {
+            if (admin.getID() == inputId && admin.checkPassword(inputPass)) {
+                cout << "\n[HỆ THỐNG]: Xin chào Quản trị viên " << admin.getName() << ".\n";
+                admin.adminMenu(db.courseList, db.studentList, db.teacherList); // Chuyển hướng sang menu admin
+                return;
+            }
+        }
 
         cout << "SAI THONG TIN DANG NHAP\n";
     }

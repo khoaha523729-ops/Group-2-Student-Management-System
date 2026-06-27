@@ -34,3 +34,14 @@ bool User::checkPassword(const string& inputPass) const
     return pass == inputPass;
 }
 
+void User::setName(string new_name) {
+    name = new_name;
+}
+
+void User::setGender(string new_gender) {
+    gender = new_gender;
+}
+
+void User::setBirthday(string new_birthday) {
+    birthday = new_birthday;
+}

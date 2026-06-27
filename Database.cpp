@@ -8,7 +8,7 @@ Database::Database() {
 }
 
 void Database::importAllData() {
-    // importAdmins();
+    importAdmins();
     importCourses();
     importStudents();
     importTeachers();
@@ -16,17 +16,17 @@ void Database::importAllData() {
     
 }
 
-// void Database::importAdmins() {
-//     ifstream f("data/admin.txt");
-//     string id, pass, name;
-//     if (f.is_open()) {
-//         while (f >> id >> pass >> name) {
-//             for (char &c : name) {if (c == '_') {c = ' ';}}
-//             adminList.push_back(Admin(id, pass, name));
-//         }
-//         f.close();
-//     }
-// }
+void Database::importAdmins() {
+    ifstream f("data/admin.txt");
+    string id, pass, name;
+    if (f.is_open()) {
+        while (f >> id >> pass >> name) {
+            for (char &c : name) {if (c == '_') {c = ' ';}}
+            adminList.push_back(Admin(id, pass, name));
+        }
+        f.close();
+    }
+}
 
 void Database::importCourses() {
     ifstream f("data/course.txt");
